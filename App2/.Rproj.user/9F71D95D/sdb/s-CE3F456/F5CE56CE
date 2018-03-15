@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n\nhead(kings)\nkingstimeseries = ts(kings)\nkingstimeseries\n\nplot.ts(kingstimeseries)\n\n\nhead(births)\nbirthstimeseries = ts(births, frequency=12, start=c(1946,1))\nbirthstimeseries\nplot.ts(birthstimeseries)\n\nsouvenirtimeseries = ts(souvenir, frequency=12, start=c(1987,1))\nsouvenirtimeseries\nplot.ts(souvenirtimeseries)\n\nlogsouvenirtimeseries = log(souvenirtimeseries)\nplot.ts(logsouvenirtimeseries)\n\n\nlibrary(\"TTR\")\n\nkingstimeseriesSMA3 = SMA(kingstimeseries,n=3)\n\n plot.ts(kingstimeseriesSMA3)\nplot.ts(kingstimeseries)\n\n\nkingstimeseriesSMA8  = SMA(kingstimeseries,n=8)\nplot.ts(kingstimeseriesSMA8)\n\n## Decomposing time series \n\nbirthstimeseriescomponents = decompose(birthstimeseries)\nkingsdecom = decompose(souvenirtimeseries)\nplot(kingsdecom)\nplot(birthstimeseriescomponents)\n\n## seasionality adjusting\nbirthstimeseriescomponents = decompose(birthstimeseries)\nbirthstimeseriesseasonallyadjusted = birthstimeseries - birthstimeseriescomponents$seasonal\n\nplot(birthstimeseriesseasonallyadjusted) ## seasionality adjusted \n\n\n## Simple Exponential Smoothing\n\nrainseries <- ts(rain,start=c(1813))\nplot.ts(rainseries)\n\n?HoltWinters\n\n## Holt winters exp smoothing \nrainseriesforecasts = HoltWinters(rainseries, gamma=F)\nsummary(rainseriesforecasts)\nrainseriesforecasts\n\nplot(rainseriesforecasts)\nrainseriesforecasts$fitted\n\nHoltWinters(rainseries,gamma=FALSE, l.start =23.56)\n\n### birth time series with seasonality \n\nbirthseries_hw = HoltWinters(birthstimeseries)\n\nbirthseries_hw\n  library(\"forecast\")\n\nrainseriesforecasts2 <- forecast.HoltWinters(rainseriesforecasts, h=8)\n\nbirthforecast <- forecast.HoltWinters(birthseries_hw, h=12)\n\nplot.forecast(rainseriesforecasts2)\n\nplot.forecast(birthforecast)\n\nskirtsseries = ts(skirts)\nplot(skirtsseries)\nskirtsseriesforecasts <- HoltWinters(skirtsseries, gamma=F)\nskirtsseriesforecasts\nplot(skirtsseries)\n\nhwskirtsreies = HoltWinters(skirtsseries, gamma=FALSE, l.start=608, b.start=9)\n\nskirtsseriesforecasts2 <- forecast.HoltWinters(hwskirtsreies, h=19)\nplot.forecast(skirtsseriesforecasts2)\n\nbseries <- HoltWinters(birthstimeseries)\n\nbirthhw = forecast.HoltWinters(bseries, h=12) \n\nplot.forecast(birthhw)\nbseries\nplot(bseries)\n\n\n\n\n\n\nvolcanodecom = decompose(volcanodustseries)\n\nplot.ts(volcanodustseries)\n\n\n\nts\n\nplot.forecast(a)\n\n\nplot.ts(skirtsseries)\n\nsk.arima = auto.arima(skirtsseries)\n\nsk.arima\n\nb = forecast.Arima(sk.arima, h=10)\nplot.forecast(b)\n\n sk2 = diff(skirtsseries, 2)\n \n plot.ts(sk2)\n \n \n sv.hw1 = HoltWinters(souvenirtimeseries)\n \n sv.forecasts = forecast.HoltWinters(sv.hw1, h = 24)\n \n plot.forecast(sv.forecasts)\n \n \n sv.arima = arima(souvenirtimeseries, order = c(0,1,1))\n \n sv.arima\n \n sv.arima.forecast = forecast.Arima(sv.arima, h = 24)\n \n plot.forecast(sv.arima.forecast)\n \n\n\nplot.ts(souvenirtimeseries)\nsk.arima = auto.arima(souvenirtimeseries)\nnames(sk.arima)\n\nsk.arima2 = arima(souvenirtimeseries, order = c(1,1,1))\n\n\nsk.arima = auto.arima(skirtsseries)\n\nsk.arima\n\nb = forecast.Arima(sk.arima, h=24)\nplot.forecast(b)\nnames(sk.arima)\n\nsk.arima$residuals\nsov_hw = HoltWinters( souvenirtimeseries)\n \n forec_sov = forecast.HoltWinters(ski, h=24)\nplot.forecast(forec_sov)\n\nplot.ts(skirtsseries)\n\nskirts_d2 = diff(skirtsseries, 2)\n\nplot.ts(skirts_d2)\n",
+    "created" : 1521110127660.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "1637598666",
+    "id" : "F5CE56CE",
+    "lastKnownWriteTime" : 1521113437,
+    "last_content_update" : 1521113437,
+    "path" : "E:/DATA SCIENCE/kelly/10 - Forecasting/3.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

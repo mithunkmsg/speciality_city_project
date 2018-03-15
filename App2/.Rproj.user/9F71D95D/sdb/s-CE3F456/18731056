@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\nkings\n\n\nhead(kings)\nkingstimeseries = ts(kings)\nkingstimeseries\n\nplot.ts(kingstimeseries)\n\n\nhead(births)\nbirthstimeseries = ts(births, frequency=12, start=c(1946,1))\nbirthstimeseries\nplot.ts(birthstimeseries)\n\nsouvenirtimeseries = ts(souvenir, frequency=12, start=c(1987,1))\nsouvenirtimeseries\nplot.ts(souvenirtimeseries)\n\nlogsouvenirtimeseries = log(souvenirtimeseries)\nplot.ts(logsouvenirtimeseries)\n\ninstall.packages(\"TTR\")\nlibrary(\"TTR\")\n\nkingstimeseriesSMA3 = SMA(kingstimeseries,n=3)\n\nplot.ts(kingstimeseriesSMA3)\n\nkingstimeseriesSMA8  = SMA(kingstimeseries,n=8)\n plot.ts(kingstimeseriesSMA8)\n\n## Decomposing time series \n\nbirthstimeseriescomponents = decompose(birthstimeseries)\n\nplot(birthstimeseriescomponents)\n\n## seasionality adjusting\nbirthstimeseriescomponents = decompose(birthstimeseries)\nbirthstimeseriesseasonallyadjusted = birthstimeseries - birthstimeseriescomponents$seasonal\n\nplot(birthstimeseriesseasonallyadjusted) ## seasionality adjusted \n\n\n## Simple Exponential Smoothing\n\nrainseries <- ts(rain,start=c( 1813))\nplot.ts(rainseries)\n\n?HoltWinters\n\n## Holt winters exp smoothing \nrainseriesforecasts = HoltWinters(rainseries, gamma=F)\nsummary(rainseriesforecasts)\nrainseriesforecasts\n\nplot(rainseriesforecasts)\nrainseriesforecasts$fitted\n\nHoltWinters(rainseries, beta=FALSE, gamma=FALSE, l.start=23.56)\nlibrary(\"forecast\")\n\nrainseriesforecasts2 <- forecast:::forecast.HoltWinters(rainseriesforecasts, h=5)\n\nplot.forecast(rainseriesforecasts2)\n\n\nskirtsseries = ts(skirts)\n\nplot.ts(skirtsseries)\n\n\n\nskirtsseriesforecasts <- HoltWinters(skirtsseries, gamma=F)\n\n\nskirtsseriesforecasts <- forecast.HoltWinters(skirtsseriesforecasts, h=10)\n\nplot.forecast(skirtsseriesforecasts)\n\nhwskirtsreies = HoltWinters(skirtsseries, gamma=FALSE, l.start=608, b.start=9)\n\nskirtsseriesforecasts2 <- forecast.HoltWinters(hwskirtsreies, h=19)\nplot.forecast(skirtsseriesforecasts2)\n\nbseries <- HoltWinters(birthstimeseries)\n\nbseries.forecast = forecast.HoltWinters(bseries, h=36)\n\nplot.forecast(bseries.forecast)\n\n\nvolcanodust <- scan(\"http://robjhyndman.com/tsdldata/annual/dvi.dat\", skip=1)\n\n library(forecast)\nvolcanodustseries <- ts(volcanodust,start=c(1500))\nplot.ts(volcanodustseries)\n\nacf(volcanodustseries, lag.max=20)             # plot a correlogram\nacf(volcanodustseries, lag.max=20, plot=FALSE) \n\npacf(volcanodustseries, lag.max=20)\npacf(volcanodustseries, lag.max=20, plot=FALSE)\n\nvolcanodustseriesarima = arima(volcanodustseries, order=c(1,1,2))\nforecast.Arima(volcanodustseriesarima, h=4 )\n\nvolcanediff1 = diff(volcanodustseries, differences = 2)\nplot.ts(volcanediff1)\n\n\nplot.ts(volcanodustseries)\n\n\n\nvolcanodustseriesarima = arima(volcanodustseries, order=c(2,2,0))\nvolcanodustseriesarima\n\nautovolcano = auto.arima(volcanodustseries)\n a = forecast.Arima(autovolcano, h=25 )\n\nplot.forecast(a)\n",
+    "created" : 1521110140657.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "1400882665",
+    "id" : "18731056",
+    "lastKnownWriteTime" : 1520419790,
+    "last_content_update" : 1520419790,
+    "path" : "E:/DATA SCIENCE/kelly/10 - Forecasting/Forecasting.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
