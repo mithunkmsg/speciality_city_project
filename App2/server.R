@@ -63,6 +63,14 @@ shinyServer(
         group_by(Date) %>%
         summarise(n = value)})
     
+    bar<-reactive({df1 %>% 
+        filter(Speciality==input$Speciality,Category==input$Type)
+                 })
+    
+    bar2<-reactive({df2 %>% 
+        filter(City_Name==input$City,Category==input$Category)
+    })
+    
     
     output$dygraph<-renderDygraph({
       spe_xts <- xts(cbind(selected1()$n,selected2()$n,selected3()$n,selected4()$n), order.by = as.Date(selected1()$Date))
@@ -172,6 +180,29 @@ shinyServer(
     output$text8<-renderPrint({
       summary(selected8()$n)
     })
+    
+    output$barplot<-renderPlot({
+      ggplot(bar(), aes(x = as.factor(Date), y = value, fill = variable)) + 
+        geom_bar(position = "dodge", stat = "identity") + 
+        xlab("Date") + ylab("Value") + 
+        geom_text(aes(label = round(value, digits = 1)), position = position_dodge(width = 1), 
+                  vjust = -0.25, color = "blue", size = 4) + ggtitle(paste("Bar Plot of",input$Speciality,"For Request, Booking, OPD, and IPD (Speciality_Wise)",sep=" ")) + 
+        theme(plot.title = element_text(lineheight = 1, face = "bold",colour = "red",size = 26),legend.position ="top") 
+      
+      
+    },height=500,width=1200)
+   
+    
+    output$barplot2<-renderPlot({
+      ggplot(bar2(), aes(x = as.factor(Date), y = value, fill = variable)) + 
+        geom_bar(position = "dodge", stat = "identity") + 
+        xlab("Date") + ylab("Value") + 
+        geom_text(aes(label = round(value, digits = 1)), position = position_dodge(width = 1), 
+                  vjust = -0.25, color = "blue", size = 4) + ggtitle(paste("Bar Plot of",input$Speciality,"For Request, Booking, OPD, and IPD (City_Wise)",sep=" ")) + 
+        theme(plot.title = element_text(lineheight = 1, face = "bold",colour = "red",size = 26),legend.position ="top") 
+      
+      
+    },height=500,width=1200)
     
     
     
