@@ -187,7 +187,7 @@ shinyServer(
         geom_bar(position = "dodge", stat = "identity") + 
         xlab("Date") + ylab("Value") + 
         geom_text(aes(label = round(value, digits = 1)), position = position_dodge(width = 1), 
-                  vjust = -0.25, color = "blue", size = 4) + ggtitle(paste("Bar Plot of",input$Speciality,"For Request, Booking, OPD, and IPD (Speciality_Wise)",sep=" ")) + 
+                  vjust = -0.25, color = "blue", size = 4) + ggtitle(paste("Bar Plot of",input$Speciality,"For Request, Booking, OPD, and IPD",sep=" ")) + 
         theme(plot.title = element_text(lineheight = 1, face = "bold",colour = "red",size = 26),legend.position ="top") 
       
       
@@ -199,7 +199,7 @@ shinyServer(
         geom_bar(position = "dodge", stat = "identity") + 
         xlab("Date") + ylab("Value") + 
         geom_text(aes(label = round(value, digits = 1)), position = position_dodge(width = 1), 
-                  vjust = -0.25, color = "blue", size = 4) + ggtitle(paste("Bar Plot of",input$Speciality,"For Request, Booking, OPD, and IPD (City_Wise)",sep=" ")) + 
+                  vjust = -0.25, color = "blue", size = 4) + ggtitle(paste("Bar Plot of",input$Speciality,"For Request, Booking, OPD, and IPD",sep=" ")) + 
         theme(plot.title = element_text(lineheight = 1, face = "bold",colour = "red",size = 26),legend.position ="top") 
       
       
