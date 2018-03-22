@@ -2,6 +2,7 @@ library(reshape2)
 library(dplyr)
 library(xts)
 library(dygraphs)
+library(ggplot2)
 speciality_wise<-read.csv("speciality_wise.csv")
 city_wise<-read.csv("city_wise.csv")
 speciality_wise[is.na(speciality_wise)]<-0
