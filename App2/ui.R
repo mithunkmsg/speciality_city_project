@@ -76,6 +76,10 @@ shinyUI(
          splitLayout(cellWidths = c("50%", "50%"), verbatimTextOutput("text5"), verbatimTextOutput("text6"),verbatimTextOutput("text7"), verbatimTextOutput("text8"))
        )
        ),
+       tabPanel("Bar Plot",h4(plotOutput("barplot")),
+                br(),
+                br(),br(),br(),br(),br(),br(),br(),br(),
+                h4(plotOutput("barplot2"))),           
        tabPanel("Forecast",plotOutput("forcast")))
 )
 )
